@@ -9,17 +9,19 @@ public class Contact {
     String name;
     String surname;
     String nif;
+    PostalAddress postalAddress;
 
-    public static final Contact NOT_FOUND = new Contact("Not founc", "", "");
+    public static final Contact NOT_FOUND = new Contact("Not found", "", "", PostalAddress.NO_ADDRESS);
 
     public Contact() {
         super();
     }
 
-    public Contact(String name, String surname, String nif) {
+    public Contact(String name, String surname, String nif, PostalAddress postalAddress) {
         this.name = name;
         this.surname = surname;
         this.nif = nif;
+        this.postalAddress = postalAddress;
     }
 
     public String getNIF() {

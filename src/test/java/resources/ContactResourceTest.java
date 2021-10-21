@@ -1,6 +1,7 @@
 package resources;
 
 import data.Contact;
+import data.PostalAddress;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ public class ContactResourceTest {
     public void createContactTest() {
         final String url = "/contacts/create";
 
-        Contact contact = new Contact("Name", "Suranme", "5");
+        Contact contact = new Contact("Name", "Suranme", "5", PostalAddress.NO_ADDRESS);
 
         given()
                 .when()
@@ -59,7 +60,7 @@ public class ContactResourceTest {
     public void updateContactTest() {
         final String url = "/contacts/update";
 
-        Contact contact = new Contact("Oscar", "Belmonte", "1");
+        Contact contact = new Contact("Oscar", "Belmonte", "1", PostalAddress.NO_ADDRESS);
 
         given()
                 .when()

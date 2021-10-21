@@ -1,6 +1,7 @@
 package services;
 
 import data.Contact;
+import data.PostalAddress;
 
 import javax.enterprise.context.ApplicationScoped;
 import java.util.Collection;
@@ -13,10 +14,10 @@ public class InMemoryDataStorage implements DataStorage {
 
     public InMemoryDataStorage() {
         super();
-        contacts.put("1", new Contact("Óscar", "Belmonte", "1"));
-        contacts.put("2", new Contact("MC", "Erdozain", "2"));
-        contacts.put("3", new Contact("Martín", "Belmonte", "3"));
-        contacts.put("4", new Contact("Gonzalo", "Belmonte", "4"));
+        contacts.put("1", new Contact("Óscar", "Belmonte", "1", PostalAddress.NO_ADDRESS));
+        contacts.put("2", new Contact("MC", "Erdozain", "2", PostalAddress.NO_ADDRESS));
+        contacts.put("3", new Contact("Martín", "Belmonte", "3", PostalAddress.NO_ADDRESS));
+        contacts.put("4", new Contact("Gonzalo", "Belmonte", "4", PostalAddress.NO_ADDRESS));
     }
 
     @Override
