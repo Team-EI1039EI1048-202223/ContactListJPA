@@ -14,10 +14,12 @@ public class InMemoryDataStorage implements DataStorage {
 
     public InMemoryDataStorage() {
         super();
-        contacts.put("1", new Contact("Óscar", "Belmonte", "1", PostalAddress.NO_ADDRESS));
-        contacts.put("2", new Contact("MC", "Erdozain", "2", PostalAddress.NO_ADDRESS));
-        contacts.put("3", new Contact("Martín", "Belmonte", "3", PostalAddress.NO_ADDRESS));
-        contacts.put("4", new Contact("Gonzalo", "Belmonte", "4", PostalAddress.NO_ADDRESS));
+
+        PostalAddress postalAddress = new PostalAddress("Av. Vicente Sos Baynat", 1, 1, "TI1203");
+        contacts.put("1", new Contact("Óscar", "Belmonte", "1", postalAddress));
+        contacts.put("2", new Contact("MC", "Erdozain", "2", postalAddress));
+        contacts.put("3", new Contact("Martín", "Belmonte", "3", postalAddress));
+        contacts.put("4", new Contact("Gonzalo", "Belmonte", "4", postalAddress));
     }
 
     @Override
