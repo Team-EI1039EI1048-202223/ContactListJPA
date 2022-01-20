@@ -29,11 +29,11 @@ Vue.createApp({
         async retrieveContact(index) {
             console.log("Contact at index: ", index);
             var url = RETRIEVE_ONE + this.contacts[index].nif;
-            var coso = this;
+            var self = this;
             await axios.get(url)
                 .then(function (response) {
                     console.log(response.data);
-                    coso.currentContact = response.data;
+                    self.currentContact = response.data;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -58,11 +58,12 @@ Vue.createApp({
         },
 
         async updateContact() {
-            const coso = this;
+            console.log("Updating");
+            const self = this;
             await axios.put(UPDATE, this.currentContact)
                 .then(function (response) {
                     console.log(response);
-                    coso.doGet();
+                    self.doGet();
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -71,12 +72,12 @@ Vue.createApp({
 
         async deleteContact(index) {
             console.log("Removing contact at index:", index);
-            var coso = this;
+            var self = this;
             var url = DELETE + this.contacts[index].nif;
             await axios.delete(url)
                 .then(function (response) {
                     console.log(response);
-                    coso.doGet();
+                    self.doGet();
                 })
                 .catch(function (error) {
                     console.log(error);
