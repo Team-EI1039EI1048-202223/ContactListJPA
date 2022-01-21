@@ -55,7 +55,8 @@ public class PersonStepdefs {
     public void i_provide_for_the_name(String name) throws Throwable {
 //        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 //        webDriver.findElement(By.xpath("//input[@ng-model='name']")).sendKeys(name);
-        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[1]/input")).sendKeys(name);
+//        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[1]/input")).sendKeys(name);
+        webDriver.findElement(By.id("name")).sendKeys(name);
 
         Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
     }
@@ -64,7 +65,8 @@ public class PersonStepdefs {
     public void i_provide_for_the_surname(String surname) throws Throwable {
 //        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 //        webDriver.findElement(By.xpath("//input[@ng-model='surname']")).sendKeys(surname);
-        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[2]/input")).sendKeys(surname);
+//        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[2]/input")).sendKeys(surname);
+        webDriver.findElement(By.id("surname")).sendKeys(surname);
         Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
     }
 
@@ -72,14 +74,16 @@ public class PersonStepdefs {
     public void i_provide_for_the_nif(Integer nif) throws Throwable {
 //        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 //        webDriver.findElement(By.xpath("//input[@ng-model='nif']")).sendKeys(""+nif);
-        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[3]/input")).sendKeys(""+nif);
+//        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[3]/input")).sendKeys(""+nif);
+        webDriver.findElement(By.id("nif")).sendKeys(""+nif);
         Thread.sleep(1000); // Eliminar, es para que se vea cómo se van escribiendo los datos.
     }
 
     @And("^I click the New button$")
     public void i_click_the_New_button() throws Throwable {
 //        webDriver.findElement(By.xpath("//button[@type='submit']")).click();
-        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[4]/button")).click();
+//        webDriver.findElement(By.xpath("/html/body/div/div[1]/form/div[4]/button")).click();
+        webDriver.findElement(By.id("new")).click();
     }
 
     @Then("^The person with nif \"([^\"]*)\" is created in the Agenda$")

@@ -21,16 +21,16 @@
     <div>
         <form class="row g-4">
             <div class="col-auto">
-                <input v-model="name" type="text" class="form-control" placeholder="Name">
+                <input id="name" v-model="name" type="text" class="form-control" placeholder="Name">
             </div>
             <div class="col-auto">
-                <input v-model="surname" type="text" class="form-control" placeholder="Surname">
+                <input id="surname" v-model="surname" type="text" class="form-control" placeholder="Surname">
             </div>
             <div class="col-auto">
-                <input v-model="nif" type="text" class="form-control" placeholder="NIF">
+                <input id="nif" v-model="nif" type="text" class="form-control" placeholder="NIF">
             </div>
             <div class="col-auto">
-                <button v-on:click="createContact(name, surname, nif)" type="button" class="btn btn-primary">New
+                <button id="new" v-on:click="createContact(name, surname, nif)" type="button" class="btn btn-primary">New
                 </button>
             </div>
         </form>
@@ -47,7 +47,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(contact, index) in contacts">
+        <tr v-for="(contact, index) in contacts" :id="contact.nif">
             <th scope="row">{{index + 1}}</th>
             <td>{{contact.name}}</td>
             <td>{{contact.surname}}</td>
