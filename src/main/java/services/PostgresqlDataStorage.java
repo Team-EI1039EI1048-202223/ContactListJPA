@@ -4,10 +4,17 @@ import data.Contact;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 import java.util.Collection;
+import java.util.List;
 
 @ApplicationScoped
 public class PostgresqlDataStorage implements DataStorage {
+    @Inject
+    EntityManager em;
+
     @Inject
     ContactDAOJPA contactDAOJPA;
 
@@ -19,7 +26,7 @@ public class PostgresqlDataStorage implements DataStorage {
 
     @Override
     public Contact retrieveContact(String nif) {
-        return null;
+        return contactDAOJPA.retrieve(nif);
     }
 
     @Override
@@ -29,11 +36,14 @@ public class PostgresqlDataStorage implements DataStorage {
 
     @Override
     public Contact deleteContact(String nif) {
-        return null;
+        return contactDAOJPA.delete(nif);
     }
 
     @Override
     public Collection<Contact> getContacts() {
-        return null;
+        TypedQuery<Contact> query = em.createNamedQuery("Contact.findAll", Contact.class);
+//        List<Contact> people = query.getResultList();
+//        return new Contact(people);
+        return query.getResultList();
     }
 }

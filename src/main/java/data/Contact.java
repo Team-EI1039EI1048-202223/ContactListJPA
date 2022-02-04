@@ -2,13 +2,15 @@ package data;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.Objects;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Contact.findAll", query = "SELECT c FROM Contact c"),
+        @NamedQuery(name = "Contact.findByNif", query = "SELECT c FROM Contact c WHERE c.nif = :nif")
+})
 public class Contact {
     String name;
     String surname;
@@ -17,6 +19,7 @@ public class Contact {
     @OneToOne
     PostalAddress postalAddress;
 
+    @Transient
     public static final Contact NOT_FOUND = new Contact("Not found", "", "", PostalAddress.NO_ADDRESS);
 
     public Contact() {
@@ -67,7 +70,7 @@ public class Contact {
     public void update(Contact contact) {
         name = contact.name;
         surname = contact.surname;
-        nif = contact.nif;;
+        nif = contact.nif;
         postalAddress = contact.postalAddress;
     }
 }

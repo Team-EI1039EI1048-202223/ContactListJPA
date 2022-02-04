@@ -32,22 +32,24 @@ public class ContactDAOJPA implements ContactDAO {
     }
 
     @Override
+    @Transactional
     public Contact update(Contact contact) {
         Contact found = em.find(Contact.class, contact.getNIF());
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin();
         found.update(contact);
-        tx.commit();
+//        tx.commit();
         return found;
     }
 
     @Override
+    @Transactional
     public Contact delete(String nif) {
         Contact found = em.find(Contact.class, nif);
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
+//        EntityTransaction tx = em.getTransaction();
+//        tx.begin();
         em.remove(found);
-        tx.commit();
+//        tx.commit();
         return found;
     }
 }
