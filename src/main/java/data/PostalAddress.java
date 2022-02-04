@@ -2,22 +2,20 @@ package data;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @Entity
 public class PostalAddress {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     String street;
     int building;
     int floor;
     String door;
 
+    @Transient
     public static final PostalAddress NO_ADDRESS = new PostalAddress();
 
     public PostalAddress() {

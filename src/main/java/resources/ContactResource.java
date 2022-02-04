@@ -1,6 +1,7 @@
 package resources;
 
 import data.Contact;
+import services.ContactDAO;
 import services.ContactDAOJPA;
 
 import javax.inject.Inject;
@@ -14,7 +15,7 @@ import java.net.URISyntaxException;
 public class
 ContactResource {
     @Inject
-    ContactDAOJPA dao;
+    ContactDAO dao;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

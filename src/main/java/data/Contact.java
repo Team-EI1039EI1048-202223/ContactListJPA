@@ -37,10 +37,6 @@ public class Contact {
         return nif;
     }
 
-    public void setPostalAddress(final PostalAddress postalAddress) {
-        this.postalAddress = postalAddress;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

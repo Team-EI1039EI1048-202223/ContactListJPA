@@ -1,21 +1,21 @@
 package services;
 
 import data.Contact;
-import data.PostalAddress;
-import org.hibernate.Transaction;
+import io.quarkus.hibernate.orm.PersistenceUnit;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import javax.transaction.TransactionManager;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @ApplicationScoped
 public class ContactDAOJPA implements ContactDAO {
     @Inject
+    @PersistenceUnit("develop")
     EntityManager em;
 
     @Override
@@ -46,9 +46,12 @@ public class ContactDAOJPA implements ContactDAO {
         return found;
     }
 
+    @Override
     public Collection<Contact> getContacts() {
         TypedQuery<Contact> query = em.createNamedQuery("Contact.findAll", Contact.class);
-        return query.getResultList();
+        List<Contact> result = query.getResultList();
+        if (result != null) return result;
+        else return new ArrayList<>();
     }
 
 }
