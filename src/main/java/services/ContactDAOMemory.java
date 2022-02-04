@@ -4,8 +4,8 @@ import data.Contact;
 
 public class ContactDAOMemory implements ContactDAO {
     @Override
-    public boolean create(Contact contact) {
-        return false;
+    public Contact create(Contact contact) {
+        return null;
     }
 
     @Override

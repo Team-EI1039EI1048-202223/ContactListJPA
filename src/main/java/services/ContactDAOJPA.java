@@ -8,8 +8,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import javax.transaction.TransactionManager;
 import javax.transaction.Transactional;
+import java.util.Collection;
 
 @ApplicationScoped
 public class ContactDAOJPA implements ContactDAO {
@@ -18,12 +20,9 @@ public class ContactDAOJPA implements ContactDAO {
 
     @Override
     @Transactional
-    public boolean create(Contact contact) {
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
+    public Contact create(Contact contact) {
         em.persist(contact);
-//        tx.commit();
-        return true;
+        return contact;
     }
 
     @Override
@@ -35,10 +34,7 @@ public class ContactDAOJPA implements ContactDAO {
     @Transactional
     public Contact update(Contact contact) {
         Contact found = em.find(Contact.class, contact.getNIF());
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
         found.update(contact);
-//        tx.commit();
         return found;
     }
 
@@ -46,10 +42,13 @@ public class ContactDAOJPA implements ContactDAO {
     @Transactional
     public Contact delete(String nif) {
         Contact found = em.find(Contact.class, nif);
-//        EntityTransaction tx = em.getTransaction();
-//        tx.begin();
         em.remove(found);
-//        tx.commit();
         return found;
     }
+
+    public Collection<Contact> getContacts() {
+        TypedQuery<Contact> query = em.createNamedQuery("Contact.findAll", Contact.class);
+        return query.getResultList();
+    }
+
 }

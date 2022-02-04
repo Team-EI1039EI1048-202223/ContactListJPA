@@ -37,10 +37,6 @@ public class Contact {
         return nif;
     }
 
-//    public void setNif(final String nif) {
-//        this.nif = nif;
-//    }
-
     public void setPostalAddress(final PostalAddress postalAddress) {
         this.postalAddress = postalAddress;
     }
