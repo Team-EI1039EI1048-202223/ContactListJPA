@@ -2,13 +2,19 @@ package data;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
+@Entity
 public class Contact {
     String name;
     String surname;
+    @Id
     String nif;
+    @OneToOne
     PostalAddress postalAddress;
 
     public static final Contact NOT_FOUND = new Contact("Not found", "", "", PostalAddress.NO_ADDRESS);
@@ -26,6 +32,14 @@ public class Contact {
 
     public String getNIF() {
         return nif;
+    }
+
+//    public void setNif(final String nif) {
+//        this.nif = nif;
+//    }
+
+    public void setPostalAddress(final PostalAddress postalAddress) {
+        this.postalAddress = postalAddress;
     }
 
     @Override
@@ -48,5 +62,12 @@ public class Contact {
                 ", surname='" + surname + '\'' +
                 ", nif='" + nif + '\'' +
                 '}';
+    }
+
+    public void update(Contact contact) {
+        name = contact.name;
+        surname = contact.surname;
+        nif = contact.nif;;
+        postalAddress = contact.postalAddress;
     }
 }

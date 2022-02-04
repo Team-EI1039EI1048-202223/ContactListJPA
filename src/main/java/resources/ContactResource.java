@@ -1,7 +1,10 @@
 package resources;
 
 import data.Contact;
+import data.PostalAddress;
+import services.ContactDAOJPA;
 import services.InMemoryDataStorage;
+import services.PostgresqlDataStorage;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -13,8 +16,14 @@ import java.net.URISyntaxException;
 @Path("/contacts")
 public class
 ContactResource {
+//    @Inject
+//    InMemoryDataStorage ds;
+
     @Inject
-    InMemoryDataStorage ds;
+    PostgresqlDataStorage ds;
+
+//    @Inject
+//    ContactDAOJPA dao;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -36,6 +45,9 @@ ContactResource {
     @Path("/create")
     public Response createContact(Contact contact) throws URISyntaxException {
         Contact response = ds.createContact(contact);
+//        PostalAddress address = new PostalAddress("uno", 1, 1, "uno");
+//        contact.setPostalAddress(address);
+//        dao.create(contact);
         if(response == Contact.NOT_FOUND) return Response.status(Response.Status.CONFLICT).build();
         URI uri = new URI("/contacts/" + contact.getNIF());
         return Response.created(uri).build();
