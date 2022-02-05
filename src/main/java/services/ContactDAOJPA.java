@@ -15,7 +15,7 @@ import java.util.List;
 @ApplicationScoped
 public class ContactDAOJPA implements ContactDAO {
     @Inject
-    @PersistenceUnit("develop")
+    @PersistenceUnit("production")
     EntityManager em;
 
     @Override
